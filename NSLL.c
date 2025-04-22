@@ -177,6 +177,16 @@ void PrintList(List L) {
     }
 }
 
+int HitungElement(List L) {
+    int count = 0;
+    address P = L;
+    while (P != NULL) {
+        count++;
+        P = P->next;
+    }
+    return count;
+}
+
 int cariKota(char nama[]) {
     for (int i = 0; i < jumlahKota; i++) {
         if (strcmp(JmlKota[i].namaKota, nama) == 0)
@@ -251,6 +261,38 @@ void hapusKota(char kota[]) {
     printf("Kota %s dan seluruh nama di dalamnya telah dihapus.\n", kota);
 }
 
+// Menampilkan jumlah nama di setiap kota
+void tampilkanJumlahNamaPerKota() {
+    if (jumlahKota == 0) {
+        printf("Tidak ada data kota.\n");
+        return;
+    }
+
+    printf("\n=== Jumlah Nama orang per Kota ===\n");
+    for (int i = 0; i < jumlahKota; i++) {
+        int jumlahNama = HitungElement(JmlKota[i].daftarNama);
+        printf("Pada Kota \"%s\" terdapat %d orang\n", JmlKota[i].namaKota, jumlahNama);
+    }
+}
+
+// Menampilkan total jumlah kota
+void tampilkanJumlahKota() {
+    printf("\n=== Jumlah Kota ===\n");
+    printf("Total jumlah kota: %d\n", jumlahKota);
+}
+
+// Menampilkan total jumlah semua nama dan kota
+void tampilkanStatistikTotal() {
+    int totalNama = 0;
+    for (int i = 0; i < jumlahKota; i++) {
+        totalNama += HitungElement(JmlKota[i].daftarNama);
+    }
+
+    printf("\n=== Statistik Total ===\n");
+    printf("Total jumlah kota : %d\n", jumlahKota);
+    printf("Total jumlah semua orang: %d\n", totalNama);
+}
+
 void Menu() {
     int pilihan;
     char nama[30], kota[30];
@@ -261,6 +303,9 @@ void Menu() {
         printf("2. Hapus Kota\n");
         printf("3. Tampilkan Semua Data\n");
         printf("4. Tampilkan Nama per Kota\n");
+        printf("5. Tampilkan Jumlah Nama per Kota\n");
+        printf("6. Tampilkan Jumlah Kota\n");
+        printf("7. Tampilkan Statistik Total\n");
         printf("0. Keluar\n");
         printf("Pilihan: "); scanf("%d", &pilihan); getchar();
 
@@ -289,6 +334,15 @@ void Menu() {
                 tampilkanPerKota(kota);
                 break;
 
+            case 5:
+                tampilkanJumlahNamaPerKota();
+                 break;
+            case 6:
+                tampilkanJumlahKota();
+                break;
+            case 7:
+                tampilkanStatistikTotal();
+                break;
             case 0:
                 printf("Terima kasih!\n");
                 break;

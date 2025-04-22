@@ -72,5 +72,8 @@ void tambahNamaKeKota(char nama[], char kota[]);
 void tampilkanSemua();
 void tampilkanPerKota(char kota[]);
 void hapusKota(char kota[]);
+void tampilkanStatistikTotal();
+void tampilkanJumlahKota();
+void tampilkanJumlahNamaPerKota();
 
 #endif
